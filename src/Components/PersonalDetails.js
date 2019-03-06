@@ -46,10 +46,10 @@ export class PersonalDetails extends Component {
                         />
                         <br/>
                         <RaisedButton
-                                label = 'Back'
-                                primary = { true }
-                                style = { styles.button }
-                                onClick = { this.back }
+                            label = 'Back'
+                            primary = { true }
+                            style = { styles.button }
+                            onClick = { this.back }
                         />
                         <RaisedButton
                             label = 'Continue'

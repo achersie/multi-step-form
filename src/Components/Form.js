@@ -8,13 +8,15 @@ export class Form extends Component {
 
     state = {
         step: 1,
-        firstName: '',
-        lastName: '',
-        email: '',
+        values: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            occupation: '',
+            city: '',
+            bio: '',
+        },
         password: '',
-        occupation: '',
-        city: '',
-        bio: '',
         formErrors: {email: '', password: ''},
         emailValid: false,
         passwordValid: false,
@@ -36,12 +38,14 @@ export class Form extends Component {
     }
 
     handleChange = input => e => {
-        this.setState({[input]: e.target.value});
+        let val = {...this.state.values}; 
+        val[input] = e.target.value;
+        this.setState({ values: val});
     }
 
     render() {
         const { step } = this.state;
-        const { firstName, lastName, email, occupation, city, bio } = this.state;
+        const { firstName, lastName, email, occupation, city, bio } = this.state.values;
         const values = { firstName, lastName, email, occupation, city, bio };
         
         switch(step) {
@@ -64,7 +68,10 @@ export class Form extends Component {
                 );
             case 3: 
                 return (
-                    <Confirmation />
+                    <Confirmation 
+                        nextStep = { this.nextStep }
+                        prevStep = { this.prevStep }
+                        values = { this.state.values } />
                 );
             case 4: 
                 return (
