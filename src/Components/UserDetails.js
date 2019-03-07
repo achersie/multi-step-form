@@ -31,6 +31,7 @@ export class UserDetails extends Component {
                             floatingLabelText = 'Last Name'
                             onChange = { handleChange('lastName') }
                             defaultValue = { values.lastName }
+                            error = { true }
                         />
                         <br/>
                         <TextField
@@ -55,7 +56,8 @@ export class UserDetails extends Component {
 
 const styles = {
     button: {
-        margin: 15
+        margin: 15,
+        width: '150px'
     }
 }
 

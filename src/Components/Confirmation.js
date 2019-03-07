@@ -35,7 +35,7 @@ class Confirmation extends Component {
           <Card>
             <List disablePadding style ={ styles.list }>
               {Object.keys(values).map((keyName, i) => (
-                <ListItem  key={i}>
+                <ListItem  key={i} style={ styles.item }>
                   <ListItemText primary={this.capitalize(keyName)} secondary={values[keyName]}/>
                 </ListItem>
               ))}
@@ -61,12 +61,16 @@ class Confirmation extends Component {
 
 const styles = {
   button: {
-      margin: 15
+      margin: 15,
+      width: '150px'
   },
   list: {
       width: '40%', 
       margin: 'auto', 
-      paddingTop: '20px'
+      paddingTop: '20px',
+  },
+  item: {
+    textAlign: 'center'
   }
 }
 

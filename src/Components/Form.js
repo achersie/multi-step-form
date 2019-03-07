@@ -75,7 +75,7 @@ export class Form extends Component {
                 );
             case 4: 
                 return (
-                    <Success />
+                    <Success/>
                 );
         }
         

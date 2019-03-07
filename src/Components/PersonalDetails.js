@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import Card from 'material-ui/Card';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import React, { Component } from 'react'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import AppBar from 'material-ui/AppBar'
+import Card from 'material-ui/Card'
+import TextField from 'material-ui/TextField'
+import RaisedButton from 'material-ui/RaisedButton'
 
 export class PersonalDetails extends Component {
     
@@ -36,6 +36,8 @@ export class PersonalDetails extends Component {
                             floatingLabelText = 'City'
                             onChange = { handleChange('city') }
                             defaultValue = { values.city }
+                            error={true}
+                            helperText={'Empty field!'}
                         />
                         <br/>
                         <TextField
@@ -66,7 +68,8 @@ export class PersonalDetails extends Component {
 
 const styles = {
     button: {
-        margin: 15
+        margin: 15,
+        width: '150px'
     }
 }
 
