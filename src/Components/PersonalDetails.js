@@ -43,13 +43,13 @@ class PersonalDetails extends Component {
     }
 
     render() {
-        const { values, handleChange, classes } = this.props;
+        const { values, handleChange, classes, isValid, textErrors } = this.props;
         return (
             <MuiThemeProvider>
                 <div>
                     <AppBar title = 'Personal Details' />
                     <Card className={classes.container}>
-                        <FormControl style={{width: '20%'}} error>
+                        <FormControl style={{width: '20%'}} error = {textErrors.occupation.length ? true : false}>
                             <InputLabel>Occupation</InputLabel>
                             <NativeSelect
                                 onChange = { handleChange('occupation') }
@@ -63,15 +63,16 @@ class PersonalDetails extends Component {
                                     )
                                 }
                             </NativeSelect>
-                            <FormHelperText>Error</FormHelperText>
+                            <FormHelperText>{textErrors.occupation}</FormHelperText>
                         </FormControl>
-                        
                         <br/>
                         <TextField
                             hintText = 'Enter Your City'
                             floatingLabelText = 'City'
                             onChange = { handleChange('city') }
                             defaultValue = { values.city }
+                            error = {textErrors.city.length ? 'true' : 'false'}
+                            errorText = { textErrors.city }
                         />
                         <br/>
                         <TextField
@@ -79,8 +80,8 @@ class PersonalDetails extends Component {
                             floatingLabelText = 'Bio'
                             onChange = { handleChange('bio') }
                             defaultValue = { values.bio }
-                            error = {textErrors.lastName.length ? 'true' : 'false'}
-                            errorText = { textErrors.lastName }
+                            error = {textErrors.bio.length ? 'true' : 'false'}
+                            errorText = { textErrors.bio }
                         />
                         <br/>
                         <RaisedButton
@@ -92,6 +93,7 @@ class PersonalDetails extends Component {
                         <RaisedButton
                             label = 'Continue'
                             primary = { true }
+                            disabled = { !isValid }
                             className = { classes.button }
                             onClick = { this.continue }
                         />

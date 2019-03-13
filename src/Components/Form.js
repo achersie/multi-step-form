@@ -17,10 +17,10 @@ export class Form extends Component {
             bio: '',
         },
         password: '',
-        userDetailsErrors: {firstName: '', lastName: '', email: ''},
-        persDetailsErrors: {occupation: '', city: '', bio: ''},
-        userDetailsValid: {firstNameValid: false, lastNameValid: false, emailValid: false},
-        persDetailsValid: {occupationValid: false, cityValid: false, bioValid: false},
+        userDetailsErrors: { firstName: '', lastName: '', email: '' },
+        persDetailsErrors: { occupation: '', city: '', bio: '' },
+        userDetailsValid: { firstNameValid: false, lastNameValid: false, emailValid: false },
+        persDetailsValid: { occupationValid: false, cityValid: false, bioValid: false },
         formValid: false
     }
 
@@ -49,8 +49,8 @@ export class Form extends Component {
     validateField(fieldName, value) {
         let UserDetailsValErrors = this.state.userDetailsErrors;
         let PersonalDetailsValErrors = this.state.persDetailsErrors;
-        let {firstNameValid, lastNameValid, emailValid} = this.state.userDetailsValid;
-        let {occupationValid, cityValid, bioValid} = this.state.userDetailsValid;
+        let { firstNameValid, lastNameValid, emailValid } = this.state.userDetailsValid;
+        let { occupationValid, cityValid, bioValid } = this.state.persDetailsValid;
 
         switch(fieldName) {
             case 'firstName':
@@ -69,10 +69,10 @@ export class Form extends Component {
                 occupationValid = value !== '' ? true : false;
                 PersonalDetailsValErrors.occupation = occupationValid ? '' : ' please select your occupation';
                 break;
-            // case 'city':
-            //     emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) ? true : false;
-            //     fieldValidationErrors.email = emailValid ? '' : ' is invalid';
-            //     break;
+            case 'city':
+                cityValid = value !== '' ? true : false;
+                PersonalDetailsValErrors.city = cityValid ? '' : ' please input your city';
+                break;
             case 'bio':
                 bioValid = value.length > 10;
                 PersonalDetailsValErrors.bio = bioValid ? '' : ' must be atleast 10 characters';
@@ -92,11 +92,13 @@ export class Form extends Component {
     }
 
     render() {
-        const { step, userDetailsErrors } = this.state;
+        const { step, userDetailsErrors, persDetailsErrors } = this.state;
         const { firstName, lastName, email, occupation, city, bio} = this.state.values;
         const values = { firstName, lastName, email, occupation, city, bio };
         const { firstNameValid, lastNameValid, emailValid } = this.state.userDetailsValid;
         const isUserDetailsValid = firstNameValid && lastNameValid && emailValid ;
+        const { occupationValid, cityValid, bioValid } = this.state.persDetailsValid;
+        const isPersonalDetailsValid = occupationValid && cityValid && bioValid ;
 
         switch(step) {
             case 1: 
@@ -116,6 +118,8 @@ export class Form extends Component {
                         prevStep = { this.prevStep }
                         handleChange = { this.handleChange }
                         values = { values } 
+                        textErrors = {persDetailsErrors}
+                        isValid = { isPersonalDetailsValid }
                     />
                 );
             case 3: 
@@ -129,6 +133,8 @@ export class Form extends Component {
                 return (
                     <Success/>
                 );
+            default:
+            break;
         }
         
     }
