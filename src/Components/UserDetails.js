@@ -4,6 +4,7 @@ import AppBar from 'material-ui/AppBar';
 import Card from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import { withStyles } from '@material-ui/core/styles';
 
 export class UserDetails extends Component {
 
@@ -13,17 +14,20 @@ export class UserDetails extends Component {
     }
 
     render() {
-        const { values, handleChange } = this.props;
+        const { textErrors, values, handleChange, isValid, classes } = this.props;
+        
         return (
             <MuiThemeProvider>
                 <div>
                     <AppBar title = 'User Details' />
-                    <Card>
+                    <Card className = {classes.container}>
                         <TextField
                             hintText = 'Enter Your First Name'
                             floatingLabelText = 'First Name'
                             onChange = { handleChange('firstName') }
                             defaultValue = { values.firstName }
+                            error = {textErrors.firstName.length ? 'true' : 'false'}
+                            errorText = { textErrors.firstName }
                         />
                         <br/>
                         <TextField
@@ -31,7 +35,8 @@ export class UserDetails extends Component {
                             floatingLabelText = 'Last Name'
                             onChange = { handleChange('lastName') }
                             defaultValue = { values.lastName }
-                            error = { true }
+                            error = {textErrors.lastName.length ? 'true' : 'false'}
+                            errorText = { textErrors.lastName }
                         />
                         <br/>
                         <TextField
@@ -39,12 +44,15 @@ export class UserDetails extends Component {
                             floatingLabelText = 'Email'
                             onChange = { handleChange('email') }
                             defaultValue = { values.email }
+                            error = {textErrors.email.length ? 'true' : 'false'}
+                            errorText = { textErrors.email }
                         />
                         <br/>
                          <RaisedButton
                             label = 'Continue'
                             primary = { true }
-                            style = { styles.button }
+                            disabled = { !isValid }
+                            className = { classes.button }
                             onClick = { this.continue }
                         />
                     </Card>
@@ -54,11 +62,19 @@ export class UserDetails extends Component {
     }
 }
 
-const styles = {
+const styles = theme => ({
+    container: {
+        padding: 20
+      },
     button: {
         margin: 15,
         width: '150px'
-    }
-}
+    },
+    textField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: 200,
+      },
+})
 
-export default UserDetails
+export default withStyles(styles)(UserDetails)

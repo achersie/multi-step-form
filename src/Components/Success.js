@@ -14,7 +14,7 @@ class Success extends Component {
     return (
       <MuiThemeProvider>
         <div>
-          <h1 style={{ fontWeight: 'bold', margin: '0', padding: '30px'}}>Your form submitted successfully!</h1>
+          <h1 style={ styles.message }>Your form submitted successfully!</h1>
           <RaisedButton
             label = 'Reset Form'
             primary = { true }
@@ -31,6 +31,11 @@ const styles = {
       margin: 15,
       width: '150px',
 
+  },
+  message: {
+    fontWeight: 'bold', 
+    margin: '0', 
+    padding: '30px'
   }
 }
 

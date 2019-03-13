@@ -4,8 +4,33 @@ import AppBar from 'material-ui/AppBar'
 import Card from 'material-ui/Card'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import InputLabel from '@material-ui/core/InputLabel'
+import { withStyles } from '@material-ui/core/styles';
+import NativeSelect from '@material-ui/core/NativeSelect';
 
-export class PersonalDetails extends Component {
+
+const jobs = [
+    {
+        value: '',
+        label: ''
+    },
+    {
+        value: 'Job 1',
+        label: 'Job 1'
+    },
+    {
+        value: 'Job 2',
+        label: 'Job 2'
+    },
+    {
+        value: 'Job 3',
+        label: 'Job 3'
+    },
+];
+
+class PersonalDetails extends Component {
     
     continue = e => {
         e.preventDefault();
@@ -18,26 +43,35 @@ export class PersonalDetails extends Component {
     }
 
     render() {
-        const { values, handleChange } = this.props;
+        const { values, handleChange, classes } = this.props;
         return (
             <MuiThemeProvider>
                 <div>
                     <AppBar title = 'Personal Details' />
-                    <Card>
-                        <TextField
-                            hintText = 'Enter Your Occupation'
-                            floatingLabelText = 'Occupation'
-                            onChange = { handleChange('occupation') }
-                            defaultValue = { values.occupation }
-                        />
+                    <Card className={classes.container}>
+                        <FormControl style={{width: '20%'}} error>
+                            <InputLabel>Occupation</InputLabel>
+                            <NativeSelect
+                                onChange = { handleChange('occupation') }
+                                defaultValue = { values.occupation }>
+                                {
+                                    jobs.map( job => {
+                                        return  <option key={ job.value } value = { job.value }>
+                                                    {job.label}
+                                                </option>
+                                        }
+                                    )
+                                }
+                            </NativeSelect>
+                            <FormHelperText>Error</FormHelperText>
+                        </FormControl>
+                        
                         <br/>
                         <TextField
                             hintText = 'Enter Your City'
                             floatingLabelText = 'City'
                             onChange = { handleChange('city') }
                             defaultValue = { values.city }
-                            error={true}
-                            helperText={'Empty field!'}
                         />
                         <br/>
                         <TextField
@@ -45,18 +79,20 @@ export class PersonalDetails extends Component {
                             floatingLabelText = 'Bio'
                             onChange = { handleChange('bio') }
                             defaultValue = { values.bio }
+                            error = {textErrors.lastName.length ? 'true' : 'false'}
+                            errorText = { textErrors.lastName }
                         />
                         <br/>
                         <RaisedButton
                             label = 'Back'
-                            primary = { true }
-                            style = { styles.button }
+                            primary = { true }                            
+                            className = { classes.button }
                             onClick = { this.back }
                         />
                         <RaisedButton
                             label = 'Continue'
                             primary = { true }
-                            style = { styles.button }
+                            className = { classes.button }
                             onClick = { this.continue }
                         />
                     </Card>
@@ -66,11 +102,14 @@ export class PersonalDetails extends Component {
     }
 }
 
-const styles = {
+const styles = theme => ({
+    container: {
+        padding: 20
+      },
     button: {
         margin: 15,
         width: '150px'
     }
-}
+})
 
-export default PersonalDetails;
+export default withStyles(styles)(PersonalDetails);
