@@ -9,7 +9,6 @@ class Success extends Component {
     window.location.reload();
   }
 
-
   render() {
     return (
       <MuiThemeProvider>
@@ -19,8 +18,9 @@ class Success extends Component {
             label = 'Reset Form'
             primary = { true }
             style = { styles.button }
-            onClick = { this.reset }/>
-      </div>
+            onClick = { this.reset }
+          />
+        </div>
       </MuiThemeProvider>
     )
   }
@@ -30,7 +30,6 @@ const styles = {
   button: {
       margin: 15,
       width: '150px',
-
   },
   message: {
     fontWeight: 'bold', 

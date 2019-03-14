@@ -16,7 +16,6 @@ export class Form extends Component {
             city: '',
             bio: '',
         },
-        password: '',
         userDetailsErrors: { firstName: '', lastName: '', email: '' },
         persDetailsErrors: { occupation: '', city: '', bio: '' },
         userDetailsValid: { firstNameValid: false, lastNameValid: false, emailValid: false },
@@ -127,7 +126,8 @@ export class Form extends Component {
                     <Confirmation 
                         nextStep = { this.nextStep }
                         prevStep = { this.prevStep }
-                        values = { this.state.values } />
+                        values = { this.state.values } 
+                    />
                 );
             case 4: 
                 return (
@@ -136,7 +136,6 @@ export class Form extends Component {
             default:
             break;
         }
-        
     }
 }
 
