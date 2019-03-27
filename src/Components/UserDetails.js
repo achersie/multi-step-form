@@ -47,7 +47,7 @@ export class UserDetails extends Component {
                         errorText = { textErrors.email }
                     />
                     <br/>
-                        <RaisedButton
+                    <RaisedButton
                         label = 'Continue'
                         primary = { true }
                         disabled = { !isValid }

@@ -69,7 +69,7 @@ class PersonalDetails extends Component {
                         floatingLabelText = 'City'
                         onChange = { handleChange('city') }
                         defaultValue = { values.city }
-                        error = {textErrors.city.length ? 'true' : 'false'}
+                        error = { textErrors.city.length ? 'true' : 'false' }
                         errorText = { textErrors.city }
                     />
                     <br/>
@@ -78,7 +78,7 @@ class PersonalDetails extends Component {
                         floatingLabelText = 'Bio'
                         onChange = { handleChange('bio') }
                         defaultValue = { values.bio }
-                        error = {textErrors.bio.length ? 'true' : 'false'}
+                        error = { textErrors.bio.length ? 'true' : 'false' }
                         errorText = { textErrors.bio }
                     />
                     <br/>

@@ -87,7 +87,6 @@ export class Form extends Component {
                         persDetailsErrors: PersonalDetailsValErrors,
                         userDetailsValid: isUserDetailsvalid,
                         persDetailsValid: isPersonalDetailsvalid});
- 
     }
 
     render() {
@@ -95,9 +94,9 @@ export class Form extends Component {
         const { firstName, lastName, email, occupation, city, bio} = this.state.values;
         const values = { firstName, lastName, email, occupation, city, bio };
         const { firstNameValid, lastNameValid, emailValid } = this.state.userDetailsValid;
-        const isUserDetailsValid = firstNameValid && lastNameValid && emailValid ;
+        const isUserDetailsValid = firstNameValid && lastNameValid && emailValid;
         const { occupationValid, cityValid, bioValid } = this.state.persDetailsValid;
-        const isPersonalDetailsValid = occupationValid && cityValid && bioValid ;
+        const isPersonalDetailsValid = occupationValid && cityValid && bioValid;
 
         switch(step) {
             case 1: 
